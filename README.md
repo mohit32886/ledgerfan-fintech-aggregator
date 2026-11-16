@@ -87,19 +87,27 @@ See [ADR-001](docs/adr/ADR-001-java21-structured-concurrency-aggregator.md) and 
 - **Maven 3.9+**
 - *(Optional)* Docker & Docker Compose for Postgres, Redis, Redpanda/Kafka, Jaeger, and Prometheus
 
-### 1. Run Tests (Zero External Dependencies)
+### 1. Run One-Command Interactive Dry-Run Demo
+
+Runs an end-to-end live walkthrough (12-upstream fan-out, OpenTelemetry ASCII waterfall, cache hits, partial degradation fault injection, transactional outbox posting, and 500-tx CDC vs. Outbox benchmark) and cleans up automatically:
+
+```bash
+./scripts/demo-dry-run.sh
+```
+
+### 2. Run Tests (Zero External Dependencies)
 
 ```bash
 mvn clean test
 ```
 
-### 2. Run Locally (H2 + In-Memory L1 Cache + Embedded Event Mesh)
+### 3. Run Locally (H2 + In-Memory L1 Cache + Embedded Event Mesh)
 
 ```bash
 mvn spring-boot:run
 ```
 
-### 3. Run Full Infrastructure Stack (PostgreSQL + Redis + Redpanda/Kafka + Jaeger + Prometheus)
+### 4. Run Full Infrastructure Stack (PostgreSQL + Redis + Redpanda/Kafka + Jaeger + Prometheus)
 
 ```bash
 docker compose up -d
