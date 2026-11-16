@@ -1,0 +1,28 @@
+spring:
+  autoconfigure:
+    exclude: []
+  datasource:
+    url: jdbc:postgresql://localhost:5432/ledgerfandb
+    driver-class-name: org.postgresql.Driver
+    username: ledgerfan
+    password: ledgerfan_secret
+  data:
+    redis:
+      host: localhost
+      port: 6379
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      acks: all
+      retries: 3
+      properties:
+        enable.idempotence: true
+
+ledgerfan:
+  cache:
+    redis-enabled: true
+  outbox:
+    kafka-enabled: true
+  observability:
+    otlp-enabled: true
+    otlp-endpoint: http://localhost:4318/v1/traces
